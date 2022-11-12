@@ -5,7 +5,8 @@ import 'package:news_app/core/view/home_page_view.dart';
  import 'package:news_app/core/view/news_view.dart';
 
 void main() {
-     //localStorage.clear();
+   LocalStorage localStorage=LocalStorage();
+   localStorage.clear();
    runApp(const MyApp());
 }
  
