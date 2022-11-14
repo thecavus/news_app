@@ -6,12 +6,13 @@ import 'package:news_app/core/view/favorites_news_view.dart';
 import 'package:news_app/core/view/home_page_view.dart';
 import 'package:news_app/core/view/news_view.dart';
 
-Future<void> main() async {
+ Future<void> main() async {
     await GetStorage.init();
  // LocalStorage localStorage = LocalStorage();
  // localStorage.clear();
   runApp(const MyApp());
-}
+ 
+ }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -32,3 +33,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+ 
