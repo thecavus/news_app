@@ -6,13 +6,30 @@ class LocalStorage {
   static const String _key_articles = "key_article";
   List<Article>? articleStorage;
 
-  getArticles() {
+  bool hasData() {
     final storage = GetStorage();
-    if (storage.read(_key_articles) != null) {
-     }
-    return storage.read(_key_articles) ?? "null";
+    if (storage.hasData(_key_articles)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-    // return articleStorage ?? "null";
+  List<Article>? getArticles() {
+//NOTE : Uygulama kapanıp açıldığında <List<Article>> tipinde kaydettiğim nesne <List<dynamic>> olmaktadır, nedendir çözemedim.
+// Sorunu try catch ile kontrol altına aldım, verilerim uygulama  kapanıp açıldıktan sonra <List<dynamic>> tipine dönüşürse mapliyorum.
+    final storage = GetStorage();
+    if (storage.hasData(_key_articles)) {
+      try {
+        List<dynamic> list = storage.read(_key_articles);
+        List<Article> listArticle =
+            list.map((e) => Article.fromJson(e)).toList();
+        return listArticle;
+      } catch (e) {
+        List<Article> list = storage.read(_key_articles);
+        return list;
+      }
+    }
   }
 
   clear() {
@@ -44,9 +61,8 @@ class LocalStorage {
         list.add(article);
         storage.write(_key_articles, list);
       }
-      
     } else {
-      var list = [];
+      List<Article> list = [];
       list.add(article);
       storage.write(_key_articles, list);
     }

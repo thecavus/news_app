@@ -19,17 +19,15 @@ class Article {
   String content;
 
   Article({
-     required this.source,
-      this.author,
-    required  this.title,
-    required  this.description,
+    required this.source,
+    this.author,
+    required this.title,
+    required this.description,
     required this.url,
-    required  this.urlToImage,
-    required  this.publishedAt,
-     required this.content,
+    required this.urlToImage,
+    required this.publishedAt,
+    required this.content,
   });
-
-
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
         source: Source.fromJson(json["source"]),
@@ -55,10 +53,10 @@ class Article {
 }
 
 class Source {
-  Source({ 
-        this.id,
-       this.name,}
-  );
+  Source({
+    this.id,
+    this.name,
+  });
 
   String? id;
   String? name;
